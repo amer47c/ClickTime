@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml"  
+     xmlns:h="http://java.sun.com/jsf/html"    
+     xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich">  
+ <h:head><title>Welcome to JSF_Spring_Hibernate_Project</title></h:head>  
+ <h:body>
+     <h:form>      
+	     <table> 
+		     <tr>
+		     	<td><h:outputLabel for="id" value="Id : " /></td>
+		     	<td><h:inputText id="id" value="#{userMB.user.id}">
+		     			<f:converter converterId="javax.faces.Integer"/>
+		     		    <a4j:ajax event="blur" update="idMsg" />
+		     		</h:inputText>
+		     		<h:message id="idMsg" for="id" display="icon"/> 
+		     	</td>
+		     </tr>
+		     <tr>
+		     	<td><h:outputLabel for="name" value="Name : " /></td>
+		     	<td><h:inputText id="name" value="#{userMB.user.name}">
+		     			<f:validateLength minimum="5" /> 
+		     			 <a4j:ajax event="blur" update="nameMsg" />
+		     		</h:inputText>
+		     		<h:message id="nameMsg" for="name" display="icon"/> 
+		     	</td>
+		     </tr>
+		     <tr>
+		     	<td><h:outputLabel for="surname" value="Surname : " /></td>   
+		     	<td><h:inputText id="surname" value="#{userMB.user.surname}"> 
+		     			<f:validateLength minimum="5" /> 
+		     			 <a4j:ajax event="blur" update="surnameMsg" />  
+		     		</h:inputText>
+		     		<h:message id="surnameMsg" for="surname" display="icon"/> 
+		     	</td>    
+		     </tr>            
+	         <tr>
+		     	<td><h:commandButton id="addUser" value="Add" action="#{userMB.addUser}" ajax="false"/></td>
+		     	<td><h:commandButton id="reset" value="Reset" action="#{userMB.reset}" ajax="false"/></td>
+		     		<td><h:commandButton id="Success" value="Success" action="#{userMB.success}" validate="false"/></td>
+		     </tr>   
+	     </table>
+	      </h:form> 
+	            <rich:panel header="Hello, World">
+        <p>This is a JSF page, testing access to Spring beans.</p>
+        <ui:fragment rendered="#{entityManagerFactory != null}">
+            EntityManagerFactory bean loaded successfully!
+        </ui:fragment>
+        <ui:fragment rendered="#{entityManagerFactory == null}">
+            EntityManagerFactory didn't loaded successfully! :(
+            Check out the logs!
+    </ui:fragment>
+    <p> </p>
+    
+    <h:form id="ytt">
+    <h:panelGrid columns="2">
+       <h:outputText value="Ajax Text:" />
+       <h:inputText value="#{richBean.text}" >
+          <a4j:ajax event="keyup" render="text,count" 
+  			/>
+  	   </h:inputText>
+  	<h:outputText value="Echo:" />
+  	<h:outputText id="text" value="#{richBean.text}" />
+       <h:outputText value="Count:" />
+       <h:outputText id="count" value="#{richBean.count}" />
+   </h:panelGrid>
+</h:form>
+            
+</rich:panel>
+    
+     
+          
+</h:body>
+</html> 

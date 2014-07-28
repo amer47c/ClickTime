@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"  
+     xmlns:h="http://java.sun.com/jsf/html"    
+     xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich">   
+<h:head>
+	<title>Welcome to JSF_Spring_Hibernate_Project</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:outputText value="USERs : "></h:outputText>
+		<rich:dataTable id="users" var="user" value="#{userMB.userList}" style="width: 10%">
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText value="ID" />
+				</f:facet>
+				<h:outputText value="#{user.id}" />
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText value="Name" />
+				</f:facet>
+				<h:outputText value="#{user.name}" />
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText value="Surname" />
+				</f:facet>
+				<h:outputText value="#{user.surname}" />
+			</rich:column>
+		</rich:dataTable>
+	</h:form>
+</h:body>
+
+</html>
